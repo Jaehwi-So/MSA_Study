@@ -1,17 +1,24 @@
 
+
 server:
   port: 0
 #  port: 3000
 
 spring:
   application:
-    name: user-service
+    name: catalog-service
   h2:
     console:
       enabled: true
       settings:
         web-allow-others: true
       path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: create-drop #?? ??? ?? ??
+    show-sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true
   datasource:
     url: jdbc:h2:mem:testdb
     username: sa
@@ -31,4 +38,7 @@ eureka:
 greeting:
   message : Welcome to the Simple E-commerce
 
-
+#Logging Level
+logging:
+  level:
+    com.example.catalogservice: DEBUG
