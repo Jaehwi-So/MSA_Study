@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user-service")
+//@RequestMapping("/user-service")
 @AllArgsConstructor
 public class UserController {
 
@@ -40,6 +40,7 @@ public class UserController {
         return this.greeting.getMessage();
     }
 
+    /* 신규 회원 등록 */
     @PostMapping("/users")
     public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user){
         ModelMapper mapper = new ModelMapper();
@@ -54,6 +55,7 @@ public class UserController {
 
     }
 
+    /* 회원 정보 리스트 조회 */
     @GetMapping("/users")
     public ResponseEntity<List<ResponseUser>> getUsers(){
         Iterable<UserEntity> userList = userService.getUserByAll();
@@ -65,6 +67,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
+
+    /* 회원 정보 상세보기 */
     @GetMapping("/users/{userId}")
     public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId){
         UserDto dto = userService.getUserByUserId(userId);
