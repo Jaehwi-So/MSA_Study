@@ -3,9 +3,29 @@ server:
 spring:
   application:
     name: config-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  profiles:
+    active: dev
+  #    active: native #Native
+
   cloud:
     config:
       server:
+        native:
+          search-locations: file://${home}/Documents/GitHub/MSA_Native_repo
         git:
-          uri: file:///Users/sojaehwi/Documents/GitHub/MSA_local_configure_repo
-
+          uri: https://github.com/Jaehwi-So/MSA_Study.git
+#          username: [your username]
+#          password: [your password]
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh
+logging:
+  level:
+    com.example.configservice: DEBUG
