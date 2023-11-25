@@ -28,9 +28,9 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
-token:
-  expiration_time: 86400000 #1일
-  secret: mySecretSecc123
+#token:
+#  expiration_time: 86400000 #1일
+#  secret: mySecretSecc123
 
 greeting:
   message : Welcome to the Simple E-commerce
@@ -38,3 +38,9 @@ greeting:
 logging:
   level:
     com.example.userservice: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans

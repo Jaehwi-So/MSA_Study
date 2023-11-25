@@ -8,9 +8,10 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-token:
-  expiration_time: 86400000 #1일
-  secret: mySecretSecc123
+#token:
+#  expiration_time: 86400000 #1일
+#  secret: mySecretSecc123
+
 
 spring:
   application:
@@ -48,6 +49,15 @@ spring:
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+        # User Actuator
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/actuator/**
+            - Method=GET, POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
           # 나머지 User-service
         - id: user-service
           uri: lb://USER-SERVICE
@@ -59,18 +69,22 @@ spring:
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
 
+
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
           predicates:
             - Path=/catalog-service/**
           filters:
             - CustomFilter
+            - AuthorizationHeaderFilter
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
           filters:
             - CustomFilter
+            - AuthorizationHeaderFilter
+
 #        - id : first-service
 #          uri : lb://MY-FIRST-SERVICE
 #          predicates:
@@ -88,3 +102,9 @@ spring:
 #                baseMessage: Logging Filter 적용해!
 #                preLogger: true
 #                postLogger: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace
