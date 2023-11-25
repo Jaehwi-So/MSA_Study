@@ -1,6 +1,6 @@
 token:
   expiration_time: 86400000 #1일
-  secret: mySecretSecc123_dev_11260816
+  secret: mySecretSecc123_dev_11260818
 
 gateway:
   ip: 172.30.1.29
