@@ -1,0 +1,11 @@
+# 해당 yml은 원래는 Public Git 같은 곳에 노출하지 않는다.
+
+encrypt:
+  # 대칭키 사용하기
+  #  key: myEncKey
+
+  # 비대칭키 사용하기 : 인증문서 불러와서 사용
+  key-store:
+    location: file://${user.home}//Documents/secretKey/msa-keystore/myEncryptionkey.jks
+    password: test123
+    alias: myEncryptionkey

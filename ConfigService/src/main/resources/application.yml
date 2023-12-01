@@ -9,9 +9,7 @@ spring:
     username: guest
     password: guest
   profiles:
-    active: dev
-  #    active: native #Native
-
+    active: native
   cloud:
     config:
       server:
@@ -19,8 +17,6 @@ spring:
           search-locations: file://${home}/Documents/GitHub/MSA_Native_repo
         git:
           uri: https://github.com/Jaehwi-So/MSA_Study.git
-#          username: [your username]
-#          password: [your password]
 management:
   endpoints:
     web:

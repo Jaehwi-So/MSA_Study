@@ -33,6 +33,7 @@ public class UserController {
         return String.format("It's Working in user service " +
                 ", port " + env.getProperty("local.server.port") +
                 ", server.port" + env.getProperty("server.port") +
+                ", spring.datasource.password" + env.getProperty("spring.datasource.password") +
                 ", token.secret" + env.getProperty("token.secret") +
                 ", token.expiration_time " + env.getProperty("token.expiration_time"));
     }
