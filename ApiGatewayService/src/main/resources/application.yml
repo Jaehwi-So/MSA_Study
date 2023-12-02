@@ -81,14 +81,14 @@ spring:
             - Path=/catalog-service/**
           filters:
             - CustomFilter
-            - AuthorizationHeaderFilter
+#            - AuthorizationHeaderFilter
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
           filters:
             - CustomFilter
-            - AuthorizationHeaderFilter
+#            - AuthorizationHeaderFilter
 
 #        - id : first-service
 #          uri : lb://MY-FIRST-SERVICE
